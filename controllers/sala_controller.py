@@ -1,7 +1,7 @@
 # Controller de PAGINAS - todas as rotas daqui respondem HTML ou
 # redirecionamento.
 
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, abort, render_template, request, redirect, url_for, flash
 from flask import session
 from models.sala import Sala
 from dao.sala_dao import SalaDAO
@@ -14,6 +14,10 @@ sala_bp = Blueprint("sala", __name__)
 # sistema. Escreva aqui a protecao, em um ponto so.
 # =====================================================================
 
+@sala_bp.before_request
+def exigir_login():
+    if not session.get("usuario_id"):
+        return redirect(url_for("auth.login"))
 
 # Listagem (GET) e cadastro (POST) na mesma rota
 @sala_bp.route("/", methods=["GET", "POST"])
