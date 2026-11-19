@@ -33,7 +33,7 @@ def index():
     # A chave deve se chamar "acessos". O template ja exibe o valor.
     # =================================================================
 
-    if session["acessos"]:
+    if session.get("acessos"):
         session["acessos"] = session["acessos"] + 1
     else:
         session["acessos"] = 1
