@@ -26,6 +26,12 @@
          - nao havendo nenhum, a frase:  Nenhuma sala cadastrada.
        ================================================================== -->
 
+  {% if salas | length > 0 %}
+    <p>{{salas | length}} registro(s).</p>
+  {% elif salas | length == 0%}
+    <p>Nenhuma sala cadastrada.</p>
+  {% endif %}
+
   <ul id="lista">
     {% for item in salas %}
       <li>
