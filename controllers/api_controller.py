@@ -35,6 +35,14 @@ def listar():
 # Se o id nao existir, a resposta e 404 com {"erro": "Sala nao encontrada."}.
 # =====================================================================
 
+@api_bp.route("/salas/<id>", methods=["GET"])
+def pegarRegistro(id):
+    sala = SalaDAO.buscar_por_id(id)
+
+    if sala is None:
+        return jsonify({"erro": "Sala nao encontrada."}), 404
+
+    return jsonify(sala.para_dicionario(), 200)
 
 # ===== ITEM 9 ========================================================
 # Escreva aqui a rota DELETE /api/salas/<id>, que remove UM registro.
