@@ -33,6 +33,13 @@ def index():
     # A chave deve se chamar "acessos". O template ja exibe o valor.
     # =================================================================
 
+    if session["acessos"]:
+        session["acessos"] = session["acessos"] + 1
+    else:
+        session["acessos"] = 1
+    
+    flash(session["acessos"])
+    
     return render_template("index.html", salas=SalaDAO.listar())
 
 
