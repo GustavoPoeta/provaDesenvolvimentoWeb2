@@ -49,3 +49,14 @@ def pegarRegistro(id):
 # Sucesso: 204, sem corpo. Se o id nao existir: 404 com
 # {"erro": "Sala nao encontrada."}.
 # =====================================================================
+
+@api_bp.route("/salas/<id>", methods=["DELETE"])
+def deletarRegistro(id):
+    sala = SalaDAO.buscar_por_id(id)
+
+    if sala is None:
+        return jsonify({"erro": "Sala nao encontrada."}), 404
+
+    SalaDAO.excluir(sala)
+
+    return jsonify({}), 204
