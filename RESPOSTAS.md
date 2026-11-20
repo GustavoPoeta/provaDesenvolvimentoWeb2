@@ -13,6 +13,6 @@ Explicação:
 
 ## R2 (Item 11)
 
-Status observado:
+Status observado: 404
 
-Explicação:
+Explicação: Como um id não foi informado, ele não encontrou sala alguma para retornar, portanto retornou 404 que significa: "Não encontrado"s
