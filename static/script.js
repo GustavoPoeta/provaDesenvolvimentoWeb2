@@ -34,7 +34,7 @@ function desenharLista(dados) {
 
 if (botaoAtualizar && lista) {
 
-  botaoAtualizar.addEventListener("click", function () {
+  botaoAtualizar.addEventListener("click", async function () {
 
     // ===== ITEM 8 ===================================================
     // Ao clicar no botao, peca a lista a API, no endereco
@@ -43,6 +43,13 @@ if (botaoAtualizar && lista) {
     // Se nao for possivel falar com o servidor, avise na tela.
     // ================================================================
 
+    const resposta = await fetch("http://127.0.0.1:5000/api/salas", {
+      method: "GET"
+    });
+    const dados = await resposta.json().catch(() => null);
+            
+
+    desenharLista(dados)
   });
 
 }
